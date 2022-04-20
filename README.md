@@ -40,3 +40,84 @@ npm run dev
  *         à partir de l'heure courante, programmer chaque film les uns à la suite des autres
  */
 ```
+
+Array.map((val, index, arr) => )
+Array.forEach((val, index) => )
+Array.reduce((acc, val, index, arr) => {}, 0)
+Array.sort((a, b) => 1)
+Array.filter((val, index) => true || false)
+Array.includes('The Batman')
+Array.slice(0, 5)
+
+Date.now()
+
+Number.parseFloat()
+Number.parseInt()
+
+String.split(',')
+String.replace('$', '')
+String.localeCompare()
+String.trim()
+
+````js
+const arr = [2, 423, 43, 325, 452, 543];
+
+const actors = 'Nathalie Roseau, Olga Giraudon';
+console.log(actors.split(',').map(v => v.trim()));
+console.log(actors.replace(', ', ' - '));
+
+arr.sort((nextValue, currentValue) => {
+    if(nextValue > currentValue){
+        return 1;
+    } else if(nextValue === currentValue) {
+        return 0
+    } else if(nextValue < currentValue) {
+        return -1;
+    }
+});
+
+const movies = [
+    { metascore: 32, title: 'Film A', duration: 30 },
+    { metascore: 64, title: 'Film B', duration: 120 },
+]
+
+function reduceOnKey(arr = [], key = '', defaultValue = undefined) {
+    return arr.reduce((acc, v) => acc += v[key], defaultValue);
+}
+
+const newArrOfObject = arr.map((value, index, thisArray) => {
+    const current = value;
+    const previous = thisArray[index -1] || null;
+    const next = thisArray[index +1] || null;
+
+    return { previous, current, next };
+});
+
+const totalMetascore = reduceOnKey(movies, 'metascore', 0);
+console.log({ totalMetascore });
+const totalDuration = reduceOnKey(movies, 'duration', 0);
+console.log({ totalDuration });
+
+if(typeof Array.prototype?.sum === 'undefined'){
+    Array.prototype.sum = function(defaultValue = undefined) {
+        return this.reduce((previousValue, iterateeValue) => {
+            const newValue = previousValue + iterateeValue;
+            return newValue;
+        }, defaultValue);
+    }
+}
+````
+
+# Comment rebase sa branche sur la branche principale
+
+git checkout main
+git pull
+
+/main --> git reset --hard
+git pull
+
+git checkout -
+OU
+git checkout ma-branch
+
+git rebase -i main
