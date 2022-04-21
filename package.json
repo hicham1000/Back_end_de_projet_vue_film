@@ -5,7 +5,8 @@
   "main": "./src/index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon ./src/index.js"
+    "dev": "nodemon ./src/index.js",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   },
   "homepage": "https://gitlab.com/davidlandais/ecn-wiztivi-22#readme",
   "devDependencies": {
+    "jest": "^27.5.1",
     "nodemon": "^2.0.15"
   },
   "dependencies": {
