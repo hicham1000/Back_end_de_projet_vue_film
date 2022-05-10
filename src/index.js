@@ -1,10 +1,10 @@
 import express from 'express';
-import { response } from 'express';
+import * as Api from './api.js';
 
 const startTime = Date.now();
 const app = express();
 
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
     const elaspedTime = Date.now() - startTime;
     return res.json({
         alive: true,
@@ -13,8 +13,9 @@ app.get('/', (req, res) => {
     });
 });
 
-app.get('/movies', async (request, response) => {
+app.get('/movies', async (_request, response) => {
     // Je souhaite récupérer tous les films
+    return response.json(Api.movies);
 });
 
 app.get('/movies/:title', async (request, response) => {
